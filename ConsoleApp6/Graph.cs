@@ -19,6 +19,19 @@
             throw new NotImplementedException(); // To do. Необходимо реализовать загрузку из файла
         }
 
+        public Vertex this[int vertexId]
+        {
+            get
+            {
+                var result = adjList.FirstOrDefault(item => item.Key.Id == vertexId).Key;
+
+                if (result is null)
+                    throw new IndexOutOfRangeException($"Вершина с указанным индексом {vertexId} не найдена");
+
+                return result;
+            }
+        }
+
         public void AddVertex(Vertex vertex)
         {
             if (vertex is null)
